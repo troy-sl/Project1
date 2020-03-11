@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+      <style>
+          #title{
+            left:27%;
+            letter-spacing: .05em;
+            text-shadow: 
+            4px 4px 0px #d5d5d5, 
+            7px 7px 0px rgba(0, 0, 0, 0.2);
+            position:absolute;
+          }
+          #login {
+            background-color: #2c2c2c;
+            border: none;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 50%;
+            position:absolute;
+            left:92%
+            }
+          #middleDiv{
+            top:55%;
+            left:39%;
+            position:absolute;
+          }
+          #searchHeader{
+            color: #2c2c2c;
+            letter-spacing: .05em;
+            text-shadow: 
+            4px 4px 0px #d5d5d5, 
+            7px 7px 0px rgba(0, 0, 0, 0.2);
+            top:48%;
+            left:41%;
+            position:absolute;
+          }
+          body{
+              background-image:url("images/elements.jpg");
+              background-size: cover;
+              background-repeat: no-repeat;
+          }
+      </style>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+
+    <title>Hello, world!</title>
+    
+  </head>
+
+  <body>
+    <!------------------->
+    <!--  HTML Section -->
+    <!------------------->
+    <div>
+        <h1 id="title">Magic The Gathering Deck Builder</h1>
+        <button id="login" class="button button5">Login / <br> Signup</button>
+        <br><br>
+    </div>
+    
+    <div>
+    <h2 id="searchHeader">Search for Cards</h2>
+        
+    <form id="middleDiv" class="form-inline mr-auto">
+        <input class="form-control mr-sm-2" type="text" placeholder="Enter Keywords" aria-label="Search">
+        <button class="btn btn-dark btn-rounded btn-sm my-0" type="submit">Search</button>
+        <br>
+        <button class="btn btn-dark btn-rounded btn-sm my-0" type="submit">Filters</button> <!--btn-outline-dark   to outline the buttons-->
+    </form>
+
+    </div>
+
+    <!-- Optional JavaScript -->
+
+    <script>
+      /* When the user clicks on the button,
+      toggle between hiding and showing the dropdown content */
+      function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+      }
+      
+      function filterFunction() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        div = document.getElementById("myDropdown");
+        a = div.getElementsByTagName("a");
+        for (i = 0; i < a.length; i++) {
+          txtValue = a[i].textContent || a[i].innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            a[i].style.display = "";
+          } else {
+            a[i].style.display = "none";
+          }
+        }
+      }
+      </script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
