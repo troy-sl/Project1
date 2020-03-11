@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Deck Builder Results</title>
+    <meta name="comp1800 boilerplate code" content="Results Page">
+    <meta name="Ian Snider" content="BCIT">
+
+    <!----------------------------------------------->
+    <!--  Meta tag for rendering on mobile devices -->
+    <!----------------------------------------------->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!----------------------------------------------->
+    <!-- CSS: Bootstrap, Firebase, other API -->
+    <!----------------------------------------------->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+   
+    <!------------------------>
+    <!-- Your own CSS files -->
+    <!------------------------>
+    <link rel="stylesheet" href="styles/style.css">
+
+</head>
+<body style="margin-bottom: 245px;">
+    <!------------------->
+    <!--  HTML Section -->
+    <!------------------->
+    <nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark">
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" onkeyup="searchSubmit()" placeholder="Search">
+        </form>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+
+            <button type="button" class="btn btn-dark" onclick="showFilters()">Filters</button>
+            <button type="button" class="btn btn-dark" onclick="getRecommended()">Recommended</button>
+
+            <div class="navbar-nav ml-auto">
+                <a href="login.html" class="nav-item nav-link">Login</a>
+            </div>
+        </div>
+    </nav>
+    
+    
+    <div class="container-fluid py-3">
+        <div class="row">
+            <div class="col-md-3">
+                <img src="images/card_placeholder.jpg" width="247"height="345"alt="Card Result 1"/>
+                <div class="py-2">
+                    <button type="button" class="btn btn-light pw-1">Add</button>
+                    <button type="button" class="btn btn-light pw-1">Market</button>
+                    <button type="button" class="btn btn-light pw-1">Remove</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <img src="images/card_placeholder.jpg" width="247"height="345"alt="Card Result 1"/>
+                <div class="py-2">
+                    <button type="button" class="btn btn-light pw-1">Add</button>
+                    <button type="button" class="btn btn-light pw-1">Market</button>
+                    <button type="button" class="btn btn-light pw-1">Remove</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <img src="images/card_placeholder.jpg" width="247"height="345"alt="Card Result 1"/>
+                <div class="py-2">
+                    <button type="button" class="btn btn-light pw-1">Add</button>
+                    <button type="button" class="btn btn-light pw-1">Market</button>
+                    <button type="button" class="btn btn-light pw-1">Remove</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <img src="images/card_placeholder.jpg" width="247"height="345"alt="Card Result 1"/>
+                <div class="py-2">
+                    <button type="button" class="btn btn-light pw-1">Add</button>
+                    <button type="button" class="btn btn-light pw-1">Market</button>
+                    <button type="button" class="btn btn-light pw-1">Remove</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+    <nav class="navbar fixed-bottom navbar-dark bg-dark py-1" style="height: 250px;">
+        <style>
+            div.scrollmenu {
+              position: relative;
+              top: -20px;
+              overflow: auto;
+              white-space: nowrap;
+            }
+            
+            div.scrollmenu span {
+              display: inline-block;
+              padding: 14px;
+              text-decoration: none;
+            }
+        </style>
+        <div class="scrollmenu">
+            <span><img src="images/card_placeholder_mini.jpg"></span>
+            <span><img src="images/card_placeholder_mini.jpg"></span>
+            <span><img src="images/card_placeholder_mini.jpg"></span>
+            <span><img src="images/card_placeholder_mini.jpg"></span>
+            <span><img src="images/card_placeholder_mini.jpg"></span>
+            <span><img src="images/card_placeholder_mini.jpg"></span>
+            <span><img src="images/card_placeholder_mini.jpg"></span>
+            <span><img src="images/card_placeholder_mini.jpg"></span>
+            <span><img src="images/card_placeholder_mini.jpg"></span>
+            <span><img src="images/card_placeholder_mini.jpg"></span>
+            <span><img src="images/card_placeholder_mini.jpg"></span>
+            <span><img src="images/card_placeholder_mini.jpg"></span>
+            <span><img src="images/card_placeholder_mini.jpg"></span>
+            <span><img src="images/card_placeholder_mini.jpg"></span>
+            <span><img src="images/card_placeholder_mini.jpg"></span>
+            <span><img src="images/card_placeholder_mini.jpg"></span>
+            <span><img src="images/card_placeholder_mini.jpg"></span>
+            <span><img src="images/card_placeholder_mini.jpg"></span>
+
+        </div>
+
+
+        <ul class="nav nav-pills nav-fill bg-secondary" style="position:absolute;width:100%;bottom:0px;left:0px;">
+            <li class="nav-item">
+                <a class="nav-link" href="#!">Import<br>Deck</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="decklist.html">Saved<br>Decks</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="results.html">Deck<br>Builder</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#!">Popular<br>Cards</a>
+            </li>
+        </ul>
+    </nav>
+    <!--
+        <div id="firebaseui-auth-container"></div>
+        <div id="loader">Loading...</div>
+    -->
+
+
+
+    <!----------------------------------------------->
+    <!-- JS: Boostrap, Firebase, other API's    -->
+    <!----------------------------------------------->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+
+     <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.9.2/firebase-app.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/7.9.2/firebase-analytics.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.9.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.2/firebase-firestore.js"></script>
+
+    <!----------------------------------------------->
+    <!-- JS files: Your own JavaScripts go here    -->
+    <!----------------------------------------------->
+    <script src="scripts/script.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBFgFYer2UnXhOuTEes15a4V2apHWAjHj0",
+            authDomain: "deckbuilderapp-a1118.firebaseapp.com",
+            databaseURL: "https://deckbuilderapp-a1118.firebaseio.com",
+            projectId: "deckbuilderapp-a1118",
+            storageBucket: "deckbuilderapp-a1118.appspot.com",
+            messagingSenderId: "643441263015",
+            appId: "1:643441263015:web:7fd9857de51ac81c9af682"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+    </script>
+    <script>
+        // Initialize the FirebaseUI Widget using Firebase.
+        var ui = new firebaseui.auth.AuthUI(firebase.auth());
+        var uiConfig = {
+            callbacks: {
+                signInSuccessWithAuthResult: function (authResult, redirectUrl) {
+                    // User successfully signed in.
+                    // Return type determines whether we continue the redirect automatically
+                    // or whether we leave that to developer to handle.
+                    var user = authResult.user;
+                    if (authResult.additionalUserInfo.isNewUser) {
+                        db.collection("users").doc(user.uid).set({
+                                name: user.displayName,
+                                email: user.email
+                            }).then(function () {
+                                console.log("New user added to firestore");
+                                window.location.assign("index.html");
+                            })
+                            .catch(function (error) {
+                                console.log("Error adding new user: " + error);
+                            });
+                    } else {
+                        return true;
+                    }
+                    return false;
+                },
+
+                uiShown: function () {
+                    // The widget is rendered.
+                    // Hide the loader.
+                    document.getElementById('loader').style.display = 'none';
+                }
+            },
+            // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+            signInFlow: 'popup',
+            signInSuccessUrl: 'index.html',
+            signInOptions: [
+                // Leave the lines as is for the providers you want to offer your users.
+                //firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                //firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+                //firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+                //firebase.auth.GithubAuthProvider.PROVIDER_ID,
+                firebase.auth.EmailAuthProvider.PROVIDER_ID,
+                //firebase.auth.PhoneAuthProvider.PROVIDER_ID
+            ],
+            // Terms of service url.
+            tosUrl: 'index.html',
+            // Privacy policy url.
+            privacyPolicyUrl: 'index.html',
+            accountChooserEnabled: false
+        };
+        // The start method will wait until the DOM is loaded.
+        // Inject the login interface into the HTML
+        
+        //ui.start('#firebaseui-auth-container', uiConfig);
+    </script>
+
+    
+
+
+</body>
+</html>                            
