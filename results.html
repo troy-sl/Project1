@@ -67,8 +67,8 @@
               text-decoration: none;
             }
         </style>
-        <div class="scrollmenu">
-            <span><img src="images/card_placeholder_mini.jpg"></span>
+        <div class="scrollmenu" id="tempdecklist">
+            <span><img src="images/card_placeholder_mini.jpg" id="testimg1"></span>
             <span><img src="images/card_placeholder_mini.jpg"></span>
             <span><img src="images/card_placeholder_mini.jpg"></span>
             <span><img src="images/card_placeholder_mini.jpg"></span>
@@ -212,6 +212,12 @@
     </script>
 
     <script>
+        function addtodeck(i) {
+            var storedimg = document.createElement("img")
+            storedimg.src = document.getElementById("result"+i).src;
+            document.getElementById("tempdecklist").appendChild(storedimg);
+        }
+        
         //on load, get number of results from session data
         //for each result item, create and display a result object.
         //a result object holds the relative image path, add, remove, and marketplace buttons
@@ -235,17 +241,23 @@
                 db.collection("cards").doc(result).get().then(function(doc){
                     console.log(result + " || " + i);
                     document.getElementById("result"+i).src= doc.data().Img;
-                    document.getElementById("result"+i+"Buttons").innerHTML += "<button id='addResult"+i+"' type='button' class='btn btn-light pw-1'>Add</button>"
+                    document.getElementById("result"+i+"Buttons").innerHTML += "<button id='addResult"+i+"' type='button' class='btn btn-light pw-1'>Add</button>";
                     document.getElementById("result"+i+"Buttons").innerHTML += "<button id='marketResult"+i+"' type='button' class='btn btn-light pw-1'>Market</button>";
                     document.getElementById("result"+i+"Buttons").innerHTML += "<button id='removeResult"+i+"' type='button' class='btn btn-light pw-1'>Remove</button>";
+                    document.getElementById("addResult"+i).onclick=addtodeck(i);
                 });
+                
+                
+            
 
                 if(i==length){
                     output.innerHTML += "</div>"
                 }
             }
+            
         }
-
+        
+        
         function testSession(){
             sessionStorage.clear();
             sessionStorage.setItem("result1", "Card1");
