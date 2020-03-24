@@ -47,46 +47,12 @@
     </nav>
     
     
-    <div class="container-fluid py-3">
-        <div class="row">
-            <div class="col-md-3">
-                <img src="images/card_placeholder.jpg" width="247"height="345"alt="Card Result 1"/>
-                <div class="py-2">
-                    <button type="button" class="btn btn-light pw-1">Add</button>
-                    <button type="button" class="btn btn-light pw-1">Market</button>
-                    <button type="button" class="btn btn-light pw-1">Remove</button>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <img src="images/card_placeholder.jpg" width="247"height="345"alt="Card Result 1"/>
-                <div class="py-2">
-                    <button type="button" class="btn btn-light pw-1">Add</button>
-                    <button type="button" class="btn btn-light pw-1">Market</button>
-                    <button type="button" class="btn btn-light pw-1">Remove</button>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <img src="images/card_placeholder.jpg" width="247"height="345"alt="Card Result 1"/>
-                <div class="py-2">
-                    <button type="button" class="btn btn-light pw-1">Add</button>
-                    <button type="button" class="btn btn-light pw-1">Market</button>
-                    <button type="button" class="btn btn-light pw-1">Remove</button>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <img src="images/card_placeholder.jpg" width="247"height="345"alt="Card Result 1"/>
-                <div class="py-2">
-                    <button type="button" class="btn btn-light pw-1">Add</button>
-                    <button type="button" class="btn btn-light pw-1">Market</button>
-                    <button type="button" class="btn btn-light pw-1">Remove</button>
-                </div>
-            </div>
-        </div>
+    <div id="outputDisplay" class="container-fluid py-3">
     </div>
     
     
 
-    <nav class="navbar fixed-bottom navbar-dark bg-dark py-1" style="height: 250px;">
+    <nav id="footer" class="navbar fixed-bottom navbar-dark bg-dark py-1" style="height: 250px;">
         <style>
             div.scrollmenu {
               position: relative;
@@ -245,6 +211,52 @@
         //ui.start('#firebaseui-auth-container', uiConfig);
     </script>
 
+    <script>
+        //on load, get number of results from session data
+        //for each result item, create and display a result object.
+        //a result object holds the relative image path, add, remove, and marketplace buttons
+        function getSearchResults(){
+            let outputContainer = document.getElementById("outputDisplay");
+            let output = "";
+            let length = sessionStorage.length;
+            outputContainer.innerHTML = "";
+            for(let i = 1; i<=length;i++){
+                if(i==1){
+                    outputContainer.innerHTML += "<div id='row"+i+"' class='row'>";
+                    output = document.getElementById("row"+i);
+                }
+                if((i-1)%4==0 && i != 1){
+                    outputContainer.innerHTML += "<div id='row"+i+"' class='row'></div>"
+                    output = document.getElementById("row"+i);
+                }
+                output.innerHTML += "<div class='col-md-3'><img id='result"+i+"' src='' width='247'height='345'/><div id='result"+i+"Buttons' class='py-2'></div></div>";
+
+                let result = sessionStorage.getItem("result" + i);
+                db.collection("cards").doc(result).get().then(function(doc){
+                    console.log(result + " || " + i);
+                    document.getElementById("result"+i).src= doc.data().Img;
+                    document.getElementById("result"+i+"Buttons").innerHTML += "<button id='addResult"+i+"' type='button' class='btn btn-light pw-1'>Add</button>"
+                    document.getElementById("result"+i+"Buttons").innerHTML += "<button id='marketResult"+i+"' type='button' class='btn btn-light pw-1'>Market</button>";
+                    document.getElementById("result"+i+"Buttons").innerHTML += "<button id='removeResult"+i+"' type='button' class='btn btn-light pw-1'>Remove</button>";
+                });
+
+                if(i==length){
+                    output.innerHTML += "</div>"
+                }
+            }
+        }
+
+        function testSession(){
+            sessionStorage.clear();
+            sessionStorage.setItem("result1", "Card1");
+            sessionStorage.setItem("result2", "Card2");
+         //   sessionStorage.setItem("result3", "Card3");
+         //   sessionStorage.setItem("result4", "Card4");
+        }
+        testSession();
+        getSearchResults();
+        
+    </script>
     
 
 
