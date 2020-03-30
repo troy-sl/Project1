@@ -28,7 +28,8 @@
     <h1>Search For Card</h1>
 
     <input type ="text" id="inputCard">
-    <input type ="submit" onclick="checkInput()">
+    <input type ="submit" id="searchButton" onclick="relocate()">
+    <input type ="submit" id="loginButton" onclick="loginButton()" value= "Login/Signup">
 
 
   <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
@@ -109,13 +110,15 @@
             let correct = "Card Exists"
 
             for(let i = 0; i < docRefArray.length; i++){
-                // needs to compare against whole word - currently accepts any number of letters in the word if they're in correct order
+
+// **** needs to compare against whole word.
+// **** currently accepts: nothing - to - any number of letters in the word if they're in correct order
                 if(docRefArray[i].includes(inputValue.toLowerCase()) && inputValue != ""){
                     test = true;
                     console.log(correct)
                     console.log(docRefArray[i]);
                     window.localStorage.setItem('userList', JSON.stringify(inputValue)); 
-                    //relocate(); // function commented out until if statement ^ is fixed          
+// relocate();   <----  function commented out until if statement ^ is fixed          
                     break;
                 } else{
                     test = false;
@@ -129,7 +132,12 @@
 
         // Destination domain
         function relocate(){
-            location.replace("Project1/results.html")
+            location.replace("results.html")
+        }
+
+        // Login Button Function
+        function loginButton(){
+            location.replace("login.html");
         }
     </script>
 
