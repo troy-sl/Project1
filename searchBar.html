@@ -19,19 +19,65 @@
     <!-- Your own CSS files -->
     <!------------------------>
 
+    <style>
+        #title{
+            font-size: 45px;
+            position:fixed;
+            left:50%;
+            top:4%;
+            transform: translate(-50%);
+            text-align: center;
+            letter-spacing: .05em;
+            text-shadow: 
+            2px 2px 0px #d5d5d5, 
+            7px 7px 0px rgba(0, 0, 0, 0.2);
+            
+        }
+        #loginButton{
+            float:right;
+            border-radius: 50%;
+        }
+        #searchButton{
+            border-radius: 50%;
+        }
+        #centerObjects{
+            position:fixed;
+            top:55%;
+            left:50%;
+            text-align: center;
+            transform: translate(-50%,-50%);
+            text-shadow: 
+            2px 2px 0px #d5d5d5, 
+            7px 7px 0px rgba(0, 0, 0, 0.2);
+        }
+        body{
+              background-image:url("images/indexGlen.jpg");
+              background-size: cover;
+              background-repeat: no-repeat;
+              background-position: center;
+              background-attachment: fixed;
+          }
+    </style>
 </head>
 <body>
     
     <!----------------------->
     <!--  HTML Section -->
     <!----------------------->
-    <h1>Search For Card</h1>
 
-    <input type ="text" id="inputCard">
-    <input type ="submit" id="searchButton" onclick="relocate()">
-    <input type ="submit" id="loginButton" onclick="loginButton()" value= "Login/Signup">
+    <div id = "centerObjects">
+        <h1>Search For Card</h1>
+        <input type ="text" id="inputCard">
+        <input type ="submit" id="searchButton" onclick="relocate()">
+    </div>
 
+    <div id= "loginPosition">
+        <input type ="submit" id="loginButton" onclick="loginButton()" value= "Login/Signup">
+    </div>
 
+    <div id="title">
+        <h1 id="title">Magic The Gathering Deck Builder</h1>
+    </div>
   <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
 
   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
