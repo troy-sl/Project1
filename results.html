@@ -246,7 +246,7 @@
                     console.log(result + " || " + i);
                     document.getElementById("result"+i).src= doc.data().Img;
                     document.getElementById("result"+i+"Buttons").innerHTML += "<button id='addResult"+i+"' type='button' class='btn btn-light pw-1' onclick='addToDeck("+i+")'>Add</button>";
-                    document.getElementById("result"+i+"Buttons").innerHTML += "<button id='marketResult"+i+"' type='button' class='btn btn-light pw-1'>Market</button>";
+                    document.getElementById("result"+i+"Buttons").innerHTML += "<button id='marketResult"+i+"' type='button' class='btn btn-light pw-1' onclick='redirectBuy()'>Market</button>";
                     document.getElementById("result"+i+"Buttons").innerHTML += "<button id='removeResult"+i+"' type='button' class='btn btn-light pw-1' onclick='removeFromDeck("+i+")'>Remove</button>";
                 });
                 
@@ -258,6 +258,9 @@
                 }
             }
             
+        }
+        function redirectBuy() {
+            window.location.replace("http://cardkingdom.com");
         }
         
         
