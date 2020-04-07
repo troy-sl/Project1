@@ -70,22 +70,6 @@
         <div class="scrollmenu" id="tempdecklist">
             <span><img src="images/card_placeholder_mini.jpg" id="testimg1"></span>
             <span><img src="images/card_placeholder_mini.jpg"></span>
-            <span><img src="images/card_placeholder_mini.jpg"></span>
-            <span><img src="images/card_placeholder_mini.jpg"></span>
-            <span><img src="images/card_placeholder_mini.jpg"></span>
-            <span><img src="images/card_placeholder_mini.jpg"></span>
-            <span><img src="images/card_placeholder_mini.jpg"></span>
-            <span><img src="images/card_placeholder_mini.jpg"></span>
-            <span><img src="images/card_placeholder_mini.jpg"></span>
-            <span><img src="images/card_placeholder_mini.jpg"></span>
-            <span><img src="images/card_placeholder_mini.jpg"></span>
-            <span><img src="images/card_placeholder_mini.jpg"></span>
-            <span><img src="images/card_placeholder_mini.jpg"></span>
-            <span><img src="images/card_placeholder_mini.jpg"></span>
-            <span><img src="images/card_placeholder_mini.jpg"></span>
-            <span><img src="images/card_placeholder_mini.jpg"></span>
-            <span><img src="images/card_placeholder_mini.jpg"></span>
-            <span><img src="images/card_placeholder_mini.jpg"></span>
 
         </div>
 
@@ -213,9 +197,15 @@
 
     <script>
         function addtodeck(i) {
-            var storedimg = document.createElement("img")
+            let storedimg = document.createElement("img")
             storedimg.src = document.getElementById("result"+i).src;
+            numcardsindeck++;
+            storedimg.id = "cardid" + i;
             document.getElementById("tempdecklist").appendChild(storedimg);
+        }
+        function removefromdeck(i) {
+            let element = document.getElementById("cardid" + i);
+            element.parentNode.removeChild(element);
         }
         
         //on load, get number of results from session data
@@ -245,6 +235,7 @@
                     document.getElementById("result"+i+"Buttons").innerHTML += "<button id='marketResult"+i+"' type='button' class='btn btn-light pw-1'>Market</button>";
                     document.getElementById("result"+i+"Buttons").innerHTML += "<button id='removeResult"+i+"' type='button' class='btn btn-light pw-1'>Remove</button>";
                     document.getElementById("addResult"+i).onclick=addtodeck(i);
+                    document.getElementById("removeResult"+i).onclick=removefromdeck(i)
                 });
                 
                 
