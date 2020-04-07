@@ -68,9 +68,6 @@
             }
         </style>
         <div class="scrollmenu" id="tempdecklist">
-            <span><img src="images/card_placeholder_mini.jpg" id="testimg1"></span>
-            <span><img src="images/card_placeholder_mini.jpg"></span>
-
         </div>
 
 
@@ -196,16 +193,21 @@
     </script>
 
     <script>
-        function addtodeck(i) {
-            let storedimg = document.createElement("img")
+        function addToDeck(i) {
+            console.log("Adding " + i);
+            var storedimg = document.createElement("img")
             storedimg.src = document.getElementById("result"+i).src;
-            numcardsindeck++;
-            storedimg.id = "cardid" + i;
+            storedimg.setAttribute('id', 'cardid' + i);
             document.getElementById("tempdecklist").appendChild(storedimg);
         }
-        function removefromdeck(i) {
-            let element = document.getElementById("cardid" + i);
+        function removeFromDeck(i) {
+            var element = document.getElementById('cardid' + i);
             element.parentNode.removeChild(element);
+            saveDeck();
+        }
+        function saveDeck() {
+            let divelements = document.getElementById("tempdecklist").querySelectorAll("img");
+            console.log(divelements);
         }
         
         //on load, get number of results from session data
@@ -231,11 +233,9 @@
                 db.collection("cards").doc(result).get().then(function(doc){
                     console.log(result + " || " + i);
                     document.getElementById("result"+i).src= doc.data().Img;
-                    document.getElementById("result"+i+"Buttons").innerHTML += "<button id='addResult"+i+"' type='button' class='btn btn-light pw-1'>Add</button>";
+                    document.getElementById("result"+i+"Buttons").innerHTML += "<button id='addResult"+i+"' type='button' class='btn btn-light pw-1' onclick='addToDeck("+i+")'>Add</button>";
                     document.getElementById("result"+i+"Buttons").innerHTML += "<button id='marketResult"+i+"' type='button' class='btn btn-light pw-1'>Market</button>";
-                    document.getElementById("result"+i+"Buttons").innerHTML += "<button id='removeResult"+i+"' type='button' class='btn btn-light pw-1'>Remove</button>";
-                    document.getElementById("addResult"+i).onclick=addtodeck(i);
-                    document.getElementById("removeResult"+i).onclick=removefromdeck(i)
+                    document.getElementById("result"+i+"Buttons").innerHTML += "<button id='removeResult"+i+"' type='button' class='btn btn-light pw-1' onclick='removeFromDeck("+i+")'>Remove</button>";
                 });
                 
                 

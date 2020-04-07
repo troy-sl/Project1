@@ -1,0 +1,199 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!----------------------------------------------->
+    <!--  Meta tag for rendering on mobile devices -->
+    <!----------------------------------------------->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!----------------------------------------------->
+    <!-- CSS: Bootstrap, Firebase, other API -->
+    <!----------------------------------------------->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+   
+    <!------------------------>
+    <!-- Your own CSS files -->
+    <!------------------------>
+
+    <style>
+        #title{
+            font-size: 45px;
+            position:fixed;
+            left:50%;
+            top:4%;
+            transform: translate(-50%);
+            text-align: center;
+            letter-spacing: .05em;
+            text-shadow: 
+            2px 2px 0px #d5d5d5, 
+            7px 7px 0px rgba(0, 0, 0, 0.2);
+            
+        }
+        #loginButton{
+            float:right;
+            border-radius: 50%;
+        }
+        #searchButton{
+            border-radius: 50%;
+        }
+        #centerObjects{
+            position:fixed;
+            top:55%;
+            left:50%;
+            text-align: center;
+            transform: translate(-50%,-50%);
+            text-shadow: 
+            2px 2px 0px #d5d5d5, 
+            7px 7px 0px rgba(0, 0, 0, 0.2);
+        }
+        body{
+              background-image:url("images/indexGlen.jpg");
+              background-size: cover;
+              background-repeat: no-repeat;
+              background-position: center;
+              background-attachment: fixed;
+          }
+    </style>
+</head>
+<body>
+    
+    <!----------------------->
+    <!--  HTML Section -->
+    <!----------------------->
+
+    <div id = "centerObjects">
+        <h1>Search For Card</h1>
+        <input type ="text" id="inputCard">
+        <input type ="submit" id="searchButton" onclick="relocate()">
+    </div>
+
+    <div id= "loginPosition">
+        <input type ="submit" id="loginButton" onclick="loginButton()" value= "Login/Signup">
+    </div>
+
+    <div id="title">
+        <h1 id="title">Magic The Gathering Deck Builder</h1>
+    </div>
+  <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+  <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-firestore.js"></script>
+
+    <!----------------------------------------------->
+    <!-- JS: Boostrap, Firebase, API related    -->
+    <!----------------------------------------------->
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBFgFYer2UnXhOuTEes15a4V2apHWAjHj0",
+            authDomain: "deckbuilderapp-a1118.firebaseapp.com",
+            databaseURL: "https://deckbuilderapp-a1118.firebaseio.com",
+            projectId: "deckbuilderapp-a1118",
+            storageBucket: "deckbuilderapp-a1118.appspot.com",
+            messagingSenderId: "643441263015",
+            appId: "1:643441263015:web:7fd9857de51ac81c9af682"
+        };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            const db = firebase.firestore();
+        </script>
+    
+    <!--------------------------------------------------------------------->
+    <!-- JS files: Your own JavaScript functions included here    -->
+    <!--------------------------------------------------------------------->
+    <script>
+
+        // Make more Efficient if poss
+        let doc1Ref;
+        let doc2Ref;
+        let doc3Ref;
+        let doc4Ref;
+        let doc5Ref;
+        let doc6Ref;
+        let doc7Ref;
+        let doc8Ref;
+        let doc9Ref;
+        let doc10Ref;
+    
+        // assign references to the value of the name in our card collections database
+        doc1Ref = db.collection('cards').doc('Card1').get().then(function (doc){doc1Ref = doc.data().Name}).then(function(){console.log(doc1Ref)});
+        doc2Ref = db.collection('cards').doc('Card2').get().then(function (doc){doc2Ref = doc.data().Name}).then(function(){console.log(doc2Ref)});
+        doc3Ref = db.collection('cards').doc('Card3').get().then(function (doc){doc3Ref = doc.data().Name}).then(function(){console.log(doc3Ref)});
+        doc4Ref = db.collection('cards').doc('Card4').get().then(function (doc){doc4Ref = doc.data().Name}).then(function(){console.log(doc4Ref)});
+        doc5Ref = db.collection('cards').doc('Card5').get().then(function (doc){doc5Ref = doc.data().Name}).then(function(){console.log(doc5Ref)});
+        doc6Ref = db.collection('cards').doc('Card6').get().then(function (doc){doc6Ref = doc.data().Name}).then(function(){console.log(doc6Ref)});
+        doc7Ref = db.collection('cards').doc('Card7').get().then(function (doc){doc7Ref = doc.data().Name}).then(function(){console.log(doc7Ref)});
+        doc8Ref = db.collection('cards').doc('Card8').get().then(function (doc){doc8Ref = doc.data().Name}).then(function(){console.log(doc8Ref)});
+        doc9Ref = db.collection('cards').doc('Card9').get().then(function (doc){doc9Ref = doc.data().Name}).then(function(){console.log(doc9Ref)});
+        doc10Ref = db.collection('cards').doc('Card10').get().then(function (doc){doc10Ref = doc.data().Name}).then(function(){console.log(doc10Ref)});
+
+        let inputValue;
+        let docRefArray;
+        let test;
+        let userList;
+        
+        // Gets number of values in firebase collection for reference
+        let dbSize = db.collection('cards').get().then(snap => {
+            size = snap.size
+            console.log("size of collection: " + size)
+        })
+
+        function checkInput(){
+            docRefArray = [doc1Ref, doc2Ref,doc3Ref, doc4Ref, doc5Ref, doc6Ref,doc7Ref,doc8Ref,doc9Ref,doc10Ref]
+            inputValue = document.getElementById("inputCard").value;
+            let test = Boolean();
+            let correct = "Card Exists"
+
+            for(let i = 0; i < docRefArray.length; i++){
+
+// **** needs to compare against whole word.
+// **** currently accepts: nothing - to - any number of letters in the word if they're in correct order
+                if(docRefArray[i].includes(inputValue.toLowerCase()) && inputValue != ""){
+                    test = true;
+                    console.log(correct)
+                    console.log(docRefArray[i]);
+                    window.localStorage.setItem('userList', JSON.stringify(inputValue)); 
+// relocate();   <----  function commented out until if statement ^ is fixed          
+                    break;
+                } else{
+                    test = false;
+                }
+            }
+            // functionality test
+            console.log("Does Card Exist: " + test)
+            console.log("user list most recent: " + window.localStorage.getItem('userList'));
+            console.log("Does user list have own property: " + window.localStorage.hasOwnProperty('userList'));
+        }
+
+        // Destination domain
+        function relocate(){
+            location.replace("results.html")
+        }
+
+        // Login Button Function
+        function loginButton(){
+            location.replace("login.html");
+        }
+    </script>
+
+    <!--------------------------------------------------------------------->
+    <!-- Make calls to your own JavaScript functions, here below-->
+    <!---------------------------------------------------------------------->
+
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    
+</body>
+</html>
