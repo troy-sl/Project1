@@ -273,9 +273,14 @@
             let inputstring = stringtotest.substr(count, stringtotest.length);
             console.log(inputstring);
             inputstoredimg.src = inputstring;
+            if (inputstring == "file:///C:/Users/xaiti/OneDrive/Desktop/Project1clone/Project1/images/sworn_guardian.png") {
+                var change = 2;
+            } else if (inputstring == "file:///C:/Users/xaiti/OneDrive/Desktop/Project1clone/Project1/images/giltgrove_stalker.png") {
+                var change = 1;
+            }
             inputstoredimg.style.width = "150px";
             inputstoredimg.style.height = "200px"
-            inputstoredimg.setAttribute('id', 'cardid' + i);
+            inputstoredimg.setAttribute('id', 'cardid' + change);
             divelements.appendChild(inputstoredimg);
             }
             }, 1000);
