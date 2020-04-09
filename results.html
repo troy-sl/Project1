@@ -57,6 +57,7 @@
 
             <button type="button" class="btn btn-dark" onclick="showFilters()">Filters</button>
             <button type="button" class="btn btn-dark" onclick="getRecommended()">Recommended</button>
+            <button type="button" class="btn btn-dark" onclick="saveDeck()">Save Deck</button>
 
             <div class="navbar-nav ml-auto">
                 <a href="login.html" class="nav-item nav-link">Login</a>
@@ -213,7 +214,28 @@
             storedimg.src = document.getElementById("result"+i).src;
             storedimg.style.width = "150px";
             storedimg.style.height = "200px"
+            storedimg.setAttribute('id', 'cardid' + i);
             document.getElementById("tempdecklist").appendChild(storedimg);
+        }
+        function removeFromDeck(i) {
+            var element = document.getElementById('cardid' + i);
+            element.parentNode.removeChild(element);
+        }
+        function saveDeck() {
+            let divelements = document.getElementById("tempdecklist").querySelectorAll("img");
+            console.log(divelements);
+            let elementarray = [];
+            for (let z = 0; z < divelements.length; z++) {
+                elementarray.push(divelements[z]);
+            }
+            console.log(elementarray);
+            for (let y = 0; y < elementarray.length; y++) {
+            let deckref = db.collection("saveddecks").doc("deck");
+            deckref.update({
+                deckarray: firebase.firestore.FieldValue.arrayUnion("" + y + elementarray[y].src)
+            });
+            }
+            document.getElementById("tempdecklist").innerHTML = "Deck Saved!";
         }
         
         //on load, get number of results from session data
@@ -240,7 +262,7 @@
                     console.log(result + " || " + i);
                     document.getElementById("result"+i).src= doc.data().Img;
                     document.getElementById("result"+i+"Buttons").innerHTML += "<button id='addResult"+i+"' type='button' class='btn btn-light pw-1' onclick='addToDeck("+i+")'>Add</button>";
-                    document.getElementById("result"+i+"Buttons").innerHTML += "<button id='marketResult"+i+"' type='button' class='btn btn-light pw-1'>Market</button>";
+                    document.getElementById("result"+i+"Buttons").innerHTML += "<button id='marketResult"+i+"' type='button' class='btn btn-light pw-1' onclick='redirectBuy()'>Market</button>";
                     document.getElementById("result"+i+"Buttons").innerHTML += "<button id='removeResult"+i+"' type='button' class='btn btn-light pw-1' onclick='removeFromDeck("+i+")'>Remove</button>";
                 });
                 
@@ -252,6 +274,9 @@
                 }
             }
             
+        }
+        function redirectBuy() {
+            window.location.replace("http://cardkingdom.com");
         }
         
         
