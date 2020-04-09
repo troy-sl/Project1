@@ -1,4 +1,4 @@
-<html lang="en">
+﻿<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,7 +68,6 @@
     <div id = "centerObjects">
         <h1>Search For Card</h1>
         <input type ="text" id="inputCard">
-        <input type ="submit" id="searchButton" onclick="checkInput()">
     </div>
 
     <div id= "loginPosition">
@@ -149,32 +148,38 @@
             console.log("size of collection: " + size)
         })
 
-        function checkInput(){
-            docRefArray = [doc1Ref, doc2Ref,doc3Ref, doc4Ref, doc5Ref, doc6Ref,doc7Ref,doc8Ref,doc9Ref,doc10Ref]
-            inputValue = document.getElementById("inputCard").value;
-            let test = Boolean();
-            let correct = "Card Exists"
+        document.getElementById("inputCard").addEventListener("keydown", function (event) {
+            if (event.keyCode == 13) {
+                event.preventDefault();
+                sessionStorage.clear();
+                docRefArray = [doc1Ref, doc2Ref, doc3Ref, doc4Ref, doc5Ref, doc6Ref, doc7Ref, doc8Ref, doc9Ref, doc10Ref]
+                inputValue = document.getElementById("inputCard").value;
+                let test = Boolean();
+                let correct = "Card Exists"
+                let resultCounter = 1;
 
-            for(let i = 0; i < docRefArray.length; i++){
-                if(inputValue == docRefArray[i]){
-                    test = true;
-                    console.log(correct)
-                    sessionStorage.setItem('userList', JSON.stringify(inputValue));         
-                    break;
-                } else{
-                    test = false;
+                for (let i = 0; i < docRefArray.length; i++) {
+                    if (docRefArray[i].toLowerCase().includes(inputValue.toLowerCase())) {
+                        test = true;
+                        console.log(correct)
+                        sessionStorage.setItem('result' + resultCounter, "Card" + (i + 1));
+                        resultCounter++;
+                    } else {
+                        test = false;
+                    }
                 }
+                relocate();
             }
-        }
+        });
 
         // Destination domain
         function relocate(){
-            location.replace("results.html")
+            location.href = "results.html";
         }
 
         // Login Button Function
         function loginButton(){
-            location.replace("login.html");
+            location.href = "login.html";
         }
     </script>
 
