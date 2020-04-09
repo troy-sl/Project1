@@ -93,7 +93,7 @@
                 <a class="nav-link" href="#!">Import<br>Deck</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="decklist.html">Saved<br>Decks</a>
+                <a class="nav-link" onclick=loadSavedDeck()>Saved<br>Decks</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="results.html">Deck<br>Builder</a>
@@ -220,7 +220,8 @@
         }
         function removeFromDeck(i) {
             var element = document.getElementById('cardid' + i);
-            element.parentNode.removeChild(element);
+            let myimgholder = document.getElementById("tempdecklist");
+            myimgholder.removeChild(element);
         }
         function saveDeck() {
             let divelements = document.getElementById("tempdecklist").querySelectorAll("img");
@@ -248,6 +249,39 @@
                 }
             }
             document.getElementById("tempdecklist").innerHTML = "Deck Saved!";
+        }
+        function loadSavedDeck() {
+            let divelements = document.getElementById("tempdecklist")
+            let myUser = firebase.auth().currentUser;
+            let myDocRef = db.collection("users").doc(myUser.uid).get().then(function (doc) {
+                myDocRef = doc.data().deckarray;
+            });
+            divelements.innerHTML = '';
+            setTimeout(function() {console.log(myDocRef)
+            for (let i = 1; i < myDocRef.length; i++) {
+            console.log("Adding " + i);
+            let inputstoredimg = document.createElement("img")
+            let stringtotest = myDocRef[i]
+            let count = 0;
+            for (let k = 0; k < stringtotest.length; k++) {
+                let test = parseInt(stringtotest.charAt(k));
+                if (isNaN(test)) {
+                    break;
+                }
+                count++;
+            }
+            let inputstring = stringtotest.substr(count, stringtotest.length);
+            console.log(inputstring);
+            inputstoredimg.src = inputstring;
+            inputstoredimg.style.width = "150px";
+            inputstoredimg.style.height = "200px"
+            inputstoredimg.setAttribute('id', 'cardid' + i);
+            divelements.appendChild(inputstoredimg);
+            }
+            }, 1000);
+            
+            
+            
         }
         
         //on load, get number of results from session data
