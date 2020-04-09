@@ -149,7 +149,8 @@
                     if (authResult.additionalUserInfo.isNewUser) {
                         db.collection("users").doc(user.uid).set({
                                 name: user.displayName,
-                                email: user.email
+                                email: user.email,
+                                deckarray: ["placeholder"]
                             }).then(function () {
                                 console.log("New user added to firestore");
                                 window.location.assign("index.html");
@@ -213,11 +214,22 @@
                 elementarray.push(divelements[z]);
             }
             console.log(elementarray);
-            for (let y = 0; y < elementarray.length; y++) {
-            let deckref = db.collection("saveddecks").doc("deck");
-            deckref.update({
-                deckarray: firebase.firestore.FieldValue.arrayUnion("" + y + elementarray[y].src)
-            });
+            let myUser = firebase.auth().currentUser;
+            console.log(myUser);
+            if (myUser) {
+                for (let x = 0; x < elementarray.length; x++) {
+                    let userdeckref = db.collection("users").doc(myUser.uid);
+                    userdeckref.update({
+                        deckarray: firebase.firestore.FieldValue.arrayUnion("" + x + elementarray[x].src)
+                    })
+                }
+            } else {
+                for (let y = 0; y < elementarray.length; y++) {
+                let deckref = db.collection("saveddecks").doc("deck");
+                    deckref.update({
+                    deckarray: firebase.firestore.FieldValue.arrayUnion("" + y + elementarray[y].src)
+                });
+                }
             }
             document.getElementById("tempdecklist").innerHTML = "Deck Saved!";
         }
