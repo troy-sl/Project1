@@ -152,7 +152,8 @@
         }
         function removeFromDeck(i) {
             var element = document.getElementById('cardid' + i);
-            element.parentNode.removeChild(element)
+            let listtochange = document.getElementById('tempdecklist');
+            listtochange.removeChild(element)
         }
         function saveDeck() {
             let divelements = document.getElementById("tempdecklist").querySelectorAll("img");
@@ -181,6 +182,17 @@
             }
             document.getElementById("tempdecklist").innerHTML = "Deck Saved!";
         }
+        //Src values corresponding to ids.
+        var card1src = "file:///C:/Users/xaiti/OneDrive/Desktop/Project1clone/Project1/images/giltgrove_stalker.png";
+        var card2src = "file:///C:/Users/xaiti/OneDrive/Desktop/Project1clone/Project1/images/sworn_guardian.png"
+        var card3src = "file:///C:/Users/xaiti/OneDrive/Desktop/Project1clone/Project1/images/vraskas_conquistador.png";
+        var card4src = "file:///C:/Users/xaiti/OneDrive/Desktop/Project1clone/Project1/images/zealot_of_the_god-pharaoh.png";
+        var card5src = "file:///C:/Users/xaiti/OneDrive/Desktop/Project1clone/Project1/images/brazen_freebooter.png";
+        var card6src = "file:///C:/Users/xaiti/OneDrive/Desktop/Project1clone/Project1/images/naturalize.png";
+        var card7src = "file:///C:/Users/xaiti/OneDrive/Desktop/Project1clone/Project1/images/luminous_bonds.png";
+        var card8src = "file:///C:/Users/xaiti/OneDrive/Desktop/Project1clone/Project1/images/negate.png";
+        var card9src = "file:///C:/Users/xaiti/OneDrive/Desktop/Project1clone/Project1/images/fortified_rampart.png";
+        var card10src = "file:///C:/Users/xaiti/OneDrive/Desktop/Project1clone/Project1/images/dark_ritual.png";
         function loadSavedDeck() {
             let divelements = document.getElementById("tempdecklist")
             let myUser = firebase.auth().currentUser;
@@ -205,10 +217,40 @@
                     let inputstring = stringtotest.substr(count, stringtotest.length);
                     console.log(inputstring);
                     inputstoredimg.src = inputstring;
-                    if (inputstring == "file:///C:/Users/xaiti/OneDrive/Desktop/Project1clone/Project1/images/sworn_guardian.png") {
-                        var change = 2;
-                    } else if (inputstring == "file:///C:/Users/xaiti/OneDrive/Desktop/Project1clone/Project1/images/giltgrove_stalker.png") {
-                        var change = 1;
+                    let change;
+                    switch (inputstring) {
+                        case card1src:
+                            change = 1;
+                            break;
+                        case card2src:
+                            change = 2;
+                            break;
+                        case card3src:
+                            change = 3;
+                            break;
+                        case card4src: 
+                            change = 4;
+                            break;
+                        case card5src: 
+                            change = 5;
+                            break;
+                        case card6src: 
+                            change = 6;
+                            break;
+                        case card7src: 
+                            change = 7;
+                            break;
+                        case card8src: 
+                            change = 8;
+                            break;
+                        case card9src: 
+                            change = 9;
+                            break;
+                        case card10src: 
+                            change = 10;
+                            break;
+                        default:
+                            change = 1;
                     }
                     inputstoredimg.style.width = "150px";
                     inputstoredimg.style.height = "200px"
