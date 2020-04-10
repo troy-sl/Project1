@@ -20,46 +20,9 @@
     <!------------------------>
     <!-- Your own CSS files -->
     <!------------------------>
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/login.css">
 
-    <style>
-        #title{
-            font-size: 45px;
-            position:fixed;
-            left:50%;
-            top:4%;
-            transform: translate(-50%);
-            text-align: center;
-            letter-spacing: .05em;
-            text-shadow: 
-            2px 2px 0px #d5d5d5, 
-            7px 7px 0px rgba(0, 0, 0, 0.2);
-            
-        }
-        #firebaseui-auth-container{
-            position:fixed;
-            top:55%;
-            left:50%;
-            text-align: center;
-            transform: translate(-50%,-50%);
-
-        }
-        #backButton{
-            position:fixed;
-            top:80%;
-            left:50%;
-            text-align: center;
-            transform: translate(-50%,-50%);
-            border-radius: 50%;
-        }
-        body{
-            background-image:url("images/indexChasm.jpg");
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-attachment: fixed;
-        }
-        </style>
+    
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
@@ -103,91 +66,11 @@
     <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyBFgFYer2UnXhOuTEes15a4V2apHWAjHj0",
-            authDomain: "deckbuilderapp-a1118.firebaseapp.com",
-            databaseURL: "https://deckbuilderapp-a1118.firebaseio.com",
-            projectId: "deckbuilderapp-a1118",
-            storageBucket: "deckbuilderapp-a1118.appspot.com",
-            messagingSenderId: "643441263015",
-            appId: "1:643441263015:web:7fd9857de51ac81c9af682"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-      </script>
-
     <!----------------------------------------------->
     <!-- JS files: Your own JavaScripts go here    -->
     <!----------------------------------------------->
-    <script src="scripts/script.js"></script>
-
-    <script>
-        // Back Button
-        function backButton(){
-            window.history.back();
-        }
-
-    </script>
-    <script>
-        // Initialize the FirebaseUI Widget using Firebase.
-        var ui = new firebaseui.auth.AuthUI(firebase.auth());
-        var uiConfig = {
-            callbacks: {
-                signInSuccessWithAuthResult: function (authResult, redirectUrl) {
-                    // User successfully signed in.
-                    // Return type determines whether we continue the redirect automatically
-                    // or whether we leave that to developer to handle.
-                    var user = authResult.user;
-                    if (authResult.additionalUserInfo.isNewUser) {
-                        db.collection("users").doc(user.uid).set({
-                                name: user.displayName,
-                                email: user.email,
-                                deckarray: ["placeholder"]
-                            }).then(function () {
-                                console.log("New user added to firestore");
-                                window.location.assign("results.html");
-                            })
-                            .catch(function (error) {
-                                console.log("Error adding new user: " + error);
-                            });
-                    } else {
-                        return true;
-                    }
-                    return false;
-                },
-
-                uiShown: function () {
-                    // The widget is rendered.
-                    // Hide the loader.
-                    document.getElementById('loader').style.display = 'none';
-                }
-            },
-            // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-            signInFlow: 'popup',
-            signInSuccessUrl: 'results.html',
-            signInOptions: [
-                // Leave the lines as is for the providers you want to offer your users.
-                //firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-                //firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-                //firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-                //firebase.auth.GithubAuthProvider.PROVIDER_ID,
-                firebase.auth.EmailAuthProvider.PROVIDER_ID,
-                //firebase.auth.PhoneAuthProvider.PROVIDER_ID
-            ],
-            // Terms of service url.
-            tosUrl: 'results.html',
-            // Privacy policy url.
-            privacyPolicyUrl: 'results.html',
-            accountChooserEnabled: false
-        };
-        // The start method will wait until the DOM is loaded.
-        // Inject the login interface into the HTML
-        ui.start('#firebaseui-auth-container', uiConfig);
-
-    </script>
+    <script src="scripts/login.js"></script>
+    
 
 </body>
 </html> 

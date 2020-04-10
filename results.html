@@ -20,25 +20,8 @@
     <!------------------------>
     <!-- Your own CSS files -->
     <!------------------------>
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/results.css">
 
-    <style>
-        .nav-pills .nav-link{
-            background-color: rgb(14, 40, 126);
-            color: white;
-            border-right: 2px solid white;
-            border-top: 2px solid white;
-            border-bottom: 2px solid white;
-            border-left: none;
-            border-top-right-radius: 5px;
-            border-bottom-right-radius: 5px;
-        }
-
-        body{
-            background-image:url("images/stars.jpg");
-            
-        }
-    </style>
 
 </head>
 <body style="margin-bottom: 245px;">
@@ -54,8 +37,6 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            <button type="button" class="btn btn-dark" onclick="showFilters()">Filters</button>
-            <button type="button" class="btn btn-dark" onclick="getRecommended()">Recommended</button>
             <button type="button" class="btn btn-dark" onclick="saveDeck()">Save Deck</button>
             <div class="navbar-nav ml-auto">
                 <a href="login.html" class="nav-item nav-link">Login</a>
@@ -66,317 +47,50 @@
     <div id="outputDisplay" class="container-fluid py-3">
     </div>
     <nav id="footer" class="navbar fixed-bottom navbar-dark bg-dark py-1" style="height: 250px;">
-        <style>
-            div.scrollmenu {
-                position: relative;
-                top: -37px;
-                overflow-x: scroll;
-                white-space: nowrap;
-            }
-
-                div.scrollmenu span {
-                    display: inline-block;
-                    padding: 14px;
-                    text-decoration: none;
-                }
-
-                div.scrollmenu img {
-                    height: 170px;
-                    width: 120px;
-                }
-        </style>
-        <div class="scrollmenu" id="tempdecklist">
-        </div>
-        <ul class="nav nav-pills nav-fill bg-secondary" style="position:absolute;width:100%;bottom:0px;left:0px;">
-            <li class="nav-item">
-                <a class="nav-link" href="#!">Import<br>Deck</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" onclick=loadSavedDeck()>Saved<br>Decks</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="results.html">Deck<br>Builder</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#!">Popular<br>Cards</a>
-            </li>
-        </ul>
+        
+            
+        
+    <div class="scrollmenu" id="tempdecklist">
+    </div>
+    <ul class="nav nav-pills nav-fill bg-secondary" style="position:absolute;width:100%;bottom:0px;left:0px;">
+        <li class="nav-item">
+            <a class="nav-link" href="#!"><br><br></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" onclick=loadSavedDeck()>Load Saved<br>Decks</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="results.html">Deck<br>Builder</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#!"><br><br></a>
+        </li>
+    </ul>
     </nav>
-    <!--
-        <div id="firebaseui-auth-container"></div>
-        <div id="loader">Loading...</div>
-    -->
+    
     <!----------------------------------------------->
-    <!-- JS: Boostrap, Firebase, other API's    -->
+    <!-- JS: Boostrap, Firebase, other API's       -->
     <!----------------------------------------------->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+
     <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.9.2/firebase-app.js"></script>
+
     <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
     <script src="https://www.gstatic.com/firebasejs/7.9.2/firebase-analytics.js"></script>
+
     <!-- Add Firebase products that you want to use -->
     <script src="https://www.gstatic.com/firebasejs/7.9.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.9.2/firebase-firestore.js"></script>
+
     <!----------------------------------------------->
     <!-- JS files: Your own JavaScripts go here    -->
     <!----------------------------------------------->
-    <script src="scripts/script.js"></script>
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyBFgFYer2UnXhOuTEes15a4V2apHWAjHj0",
-            authDomain: "deckbuilderapp-a1118.firebaseapp.com",
-            databaseURL: "https://deckbuilderapp-a1118.firebaseio.com",
-            projectId: "deckbuilderapp-a1118",
-            storageBucket: "deckbuilderapp-a1118.appspot.com",
-            messagingSenderId: "643441263015",
-            appId: "1:643441263015:web:7fd9857de51ac81c9af682"
-        };
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-    </script>
-
-    <script>
-        function addToDeck(i) {
-            console.log("Adding " + i);
-            var storedimg = document.createElement("img")
-            storedimg.src = document.getElementById("result" + i).src;
-            storedimg.setAttribute('id', 'cardid' + i);
-            document.getElementById("tempdecklist").appendChild(storedimg);
-        }
-        function removeFromDeck(i) {
-            var element = document.getElementById('cardid' + i);
-            let listtochange = document.getElementById('tempdecklist');
-            listtochange.removeChild(element)
-        }
-        function saveDeck() {
-            let divelements = document.getElementById("tempdecklist").querySelectorAll("img");
-            console.log(divelements);
-            let elementarray = [];
-            for (let z = 0; z < divelements.length; z++) {
-                elementarray.push(divelements[z]);
-            }
-            console.log(elementarray);
-            let myUser = firebase.auth().currentUser;
-            console.log(myUser);
-            if (myUser) {
-                for (let x = 0; x < elementarray.length; x++) {
-                    let userdeckref = db.collection("users").doc(myUser.uid);
-                    userdeckref.update({
-                        deckarray: firebase.firestore.FieldValue.arrayUnion("" + x + elementarray[x].src)
-                    })
-                }
-            } else {
-                for (let y = 0; y < elementarray.length; y++) {
-                    let deckref = db.collection("saveddecks").doc("deck");
-                    deckref.update({
-                        deckarray: firebase.firestore.FieldValue.arrayUnion("" + y + elementarray[y].src)
-                    });
-                }
-            }
-            document.getElementById("tempdecklist").innerHTML = "Deck Saved!";
-        }
-        //Src values corresponding to ids.
-        var card1src = "file:///C:/Users/xaiti/OneDrive/Desktop/Project1clone/Project1/images/giltgrove_stalker.png";
-        var card2src = "file:///C:/Users/xaiti/OneDrive/Desktop/Project1clone/Project1/images/sworn_guardian.png"
-        var card3src = "file:///C:/Users/xaiti/OneDrive/Desktop/Project1clone/Project1/images/vraskas_conquistador.png";
-        var card4src = "file:///C:/Users/xaiti/OneDrive/Desktop/Project1clone/Project1/images/zealot_of_the_god-pharaoh.png";
-        var card5src = "file:///C:/Users/xaiti/OneDrive/Desktop/Project1clone/Project1/images/brazen_freebooter.png";
-        var card6src = "file:///C:/Users/xaiti/OneDrive/Desktop/Project1clone/Project1/images/naturalize.png";
-        var card7src = "file:///C:/Users/xaiti/OneDrive/Desktop/Project1clone/Project1/images/luminous_bonds.png";
-        var card8src = "file:///C:/Users/xaiti/OneDrive/Desktop/Project1clone/Project1/images/negate.png";
-        var card9src = "file:///C:/Users/xaiti/OneDrive/Desktop/Project1clone/Project1/images/fortified_rampart.png";
-        var card10src = "file:///C:/Users/xaiti/OneDrive/Desktop/Project1clone/Project1/images/dark_ritual.png";
-        function loadSavedDeck() {
-            let divelements = document.getElementById("tempdecklist")
-            let myUser = firebase.auth().currentUser;
-            let myDocRef = db.collection("users").doc(myUser.uid).get().then(function (doc) {
-                myDocRef = doc.data().deckarray;
-            });
-            divelements.innerHTML = '';
-            setTimeout(function () {
-                console.log(myDocRef)
-                for (let i = 1; i < myDocRef.length; i++) {
-                    console.log("Adding " + i);
-                    let inputstoredimg = document.createElement("img")
-                    let stringtotest = myDocRef[i]
-                    let count = 0;
-                    for (let k = 0; k < stringtotest.length; k++) {
-                        let test = parseInt(stringtotest.charAt(k));
-                        if (isNaN(test)) {
-                            break;
-                        }
-                        count++;
-                    }
-                    let inputstring = stringtotest.substr(count, stringtotest.length);
-                    console.log(inputstring);
-                    inputstoredimg.src = inputstring;
-                    let change;
-                    switch (inputstring) {
-                        case card1src:
-                            change = 1;
-                            break;
-                        case card2src:
-                            change = 2;
-                            break;
-                        case card3src:
-                            change = 3;
-                            break;
-                        case card4src: 
-                            change = 4;
-                            break;
-                        case card5src: 
-                            change = 5;
-                            break;
-                        case card6src: 
-                            change = 6;
-                            break;
-                        case card7src: 
-                            change = 7;
-                            break;
-                        case card8src: 
-                            change = 8;
-                            break;
-                        case card9src: 
-                            change = 9;
-                            break;
-                        case card10src: 
-                            change = 10;
-                            break;
-                        default:
-                            change = 1;
-                    }
-                    inputstoredimg.style.width = "150px";
-                    inputstoredimg.style.height = "200px"
-                    inputstoredimg.setAttribute('id', 'cardid' + change);
-                    divelements.appendChild(inputstoredimg);
-                }
-            }, 1000);
-
-
-
-        }
-
-        //on load, get number of results from session data
-        //for each result item, create and display a result object.
-        //a result object holds the relative image path, add, remove, and marketplace buttons
-        function getSearchResults() {
-            let outputContainer = document.getElementById("outputDisplay");
-            let output = "";
-            let length = sessionStorage.length;
-            outputContainer.innerHTML = "";
-            for (let i = 1; i <= length; i++) {
-                if (i == 1) {
-                    outputContainer.innerHTML += "<div id='row" + i + "' class='row'>";
-                    output = document.getElementById("row" + i);
-                }
-                if ((i - 1) % 4 == 0 && i != 1) {
-                    outputContainer.innerHTML += "<div id='row" + i + "' class='row'></div>"
-                    output = document.getElementById("row" + i);
-                }
-                output.innerHTML += "<div class='col-md-3'><img id='result" + i + "' src='' width='247'height='345'/><div id='result" + i + "Buttons' class='py-2'></div></div>";
-
-                let result = sessionStorage.getItem("result" + i);
-                db.collection("cards").doc(result).get().then(function (doc) {
-                    console.log(result + " || " + i);
-                    document.getElementById("result" + i).src = doc.data().Img;
-                    document.getElementById("result" + i + "Buttons").innerHTML += "<button id='addResult" + i + "' type='button' class='btn btn-light pw-1' onclick='addToDeck(" + i + ")'>Add</button>";
-                    document.getElementById("result" + i + "Buttons").innerHTML += "<button id='marketResult" + i + "' type='button' class='btn btn-light pw-1' onclick='redirectBuy()'>Market</button>";
-                    document.getElementById("result" + i + "Buttons").innerHTML += "<button id='removeResult" + i + "' type='button' class='btn btn-light pw-1' onclick='removeFromDeck(" + i + ")'>Remove</button>";
-                });
-
-
-
-
-                if (i == length) {
-                    output.innerHTML += "</div>"
-                }
-            }
-
-        }
-        function redirectBuy() {
-            window.location.replace("http://cardkingdom.com");
-        }
-
-
-        function testSession() {
-            sessionStorage.clear();
-            sessionStorage.setItem("result1", "Card1");
-            sessionStorage.setItem("result2", "Card2");
-            //   sessionStorage.setItem("result3", "Card3");
-            //   sessionStorage.setItem("result4", "Card4");
-        }
-        //testSession();
-        getSearchResults();
-
-    </script>
-    <script>
-
-        // Make more Efficient if poss
-        let doc1Ref;
-        let doc2Ref;
-        let doc3Ref;
-        let doc4Ref;
-        let doc5Ref;
-        let doc6Ref;
-        let doc7Ref;
-        let doc8Ref;
-        let doc9Ref;
-        let doc10Ref;
-
-        // assign references to the value of the name in our card collections database
-        doc1Ref = db.collection('cards').doc('Card1').get().then(function (doc) { doc1Ref = doc.data().Name }) //.then(function(){console.log(doc1Ref)});
-        doc2Ref = db.collection('cards').doc('Card2').get().then(function (doc) { doc2Ref = doc.data().Name }) //.then(function(){console.log(doc2Ref)});
-        doc3Ref = db.collection('cards').doc('Card3').get().then(function (doc) { doc3Ref = doc.data().Name }) //.then(function(){console.log(doc3Ref)});
-        doc4Ref = db.collection('cards').doc('Card4').get().then(function (doc) { doc4Ref = doc.data().Name }) //.then(function(){console.log(doc4Ref)});
-        doc5Ref = db.collection('cards').doc('Card5').get().then(function (doc) { doc5Ref = doc.data().Name }) //.then(function(){console.log(doc5Ref)});
-        doc6Ref = db.collection('cards').doc('Card6').get().then(function (doc) { doc6Ref = doc.data().Name }) //.then(function(){console.log(doc6Ref)});
-        doc7Ref = db.collection('cards').doc('Card7').get().then(function (doc) { doc7Ref = doc.data().Name }) //.then(function(){console.log(doc7Ref)});
-        doc8Ref = db.collection('cards').doc('Card8').get().then(function (doc) { doc8Ref = doc.data().Name }) //.then(function(){console.log(doc8Ref)});
-        doc9Ref = db.collection('cards').doc('Card9').get().then(function (doc) { doc9Ref = doc.data().Name }) //.then(function(){console.log(doc9Ref)});
-        doc10Ref = db.collection('cards').doc('Card10').get().then(function (doc) { doc10Ref = doc.data().Name }) //.then(function(){console.log(doc10Ref)});
-
-        let inputValue;
-        let docRefArray;
-        let test;
-        let userList;
-
-        // Gets number of values in firebase collection for reference
-        let dbSize = db.collection('cards').get().then(snap => {
-            size = snap.size
-            console.log("size of collection: " + size)
-        })
-
-        document.getElementById("inputCard").addEventListener("keydown", function (event) {
-            if (event.keyCode == 13) {
-                event.preventDefault();
-                sessionStorage.clear();
-                docRefArray = [doc1Ref, doc2Ref, doc3Ref, doc4Ref, doc5Ref, doc6Ref, doc7Ref, doc8Ref, doc9Ref, doc10Ref]
-                inputValue = document.getElementById("inputCard").value;
-                let test = Boolean();
-                let correct = "Card Exists"
-                let resultCounter = 1;
-
-                for (let i = 0; i < docRefArray.length; i++) {
-                    if (docRefArray[i].toLowerCase().includes(inputValue.toLowerCase())) {
-                        test = true;
-                        console.log(correct)
-                        sessionStorage.setItem('result' + resultCounter, "Card" + (i + 1));
-                        resultCounter++;
-                    } else {
-                        test = false;
-                    }
-                }
-                getSearchResults();
-            }
-        });
-    </script>
+    <script src="scripts/results.js"></script> 
 
 
 </body>
