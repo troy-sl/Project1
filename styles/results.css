@@ -1,0 +1,32 @@
+.nav-pills .nav-link {
+    background-color: rgb(14, 40, 126);
+    color: white;
+    border-right: 2px solid white;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    border-left: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+body {
+    background-image: url("../images/stars.jpg");
+}
+
+div.scrollmenu {
+    position: relative;
+    top: -37px;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+div.scrollmenu span {
+    display: inline-block;
+    padding: 14px;
+    text-decoration: none;
+}
+
+div.scrollmenu img {
+    height: 170px;
+    width: 120px;
+}

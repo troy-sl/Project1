@@ -1,0 +1,35 @@
+#title {
+    font-size: 45px;
+    position: fixed;
+    left: 50%;
+    top: 4%;
+    transform: translate(-50%);
+    text-align: center;
+    letter-spacing: .05em;
+    text-shadow: 2px 2px 0px #d5d5d5, 7px 7px 0px rgba(0, 0, 0, 0.2);
+}
+
+#firebaseui-auth-container {
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%,-50%);
+}
+
+#backButton {
+    position: fixed;
+    top: 80%;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%,-50%);
+    border-radius: 50%;
+}
+
+body {
+    background-image: url("../images/indexChasm.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
