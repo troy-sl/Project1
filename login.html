@@ -22,6 +22,45 @@
     <!------------------------>
     <link rel="stylesheet" href="styles/style.css">
 
+    <style>
+        #title{
+            font-size: 45px;
+            position:fixed;
+            left:50%;
+            top:4%;
+            transform: translate(-50%);
+            text-align: center;
+            letter-spacing: .05em;
+            text-shadow: 
+            2px 2px 0px #d5d5d5, 
+            7px 7px 0px rgba(0, 0, 0, 0.2);
+            
+        }
+        #firebaseui-auth-container{
+            position:fixed;
+            top:55%;
+            left:50%;
+            text-align: center;
+            transform: translate(-50%,-50%);
+
+        }
+        #backButton{
+            position:fixed;
+            top:80%;
+            left:50%;
+            text-align: center;
+            transform: translate(-50%,-50%);
+            border-radius: 50%;
+        }
+        body{
+            background-image:url("images/indexChasm.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        </style>
+
     <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
 
@@ -31,11 +70,9 @@
     <!--  HTML Section -->
     <!------------------->
 
-    <h1>MTG Login/Signup Page</h1>
-
     <!-- Define the HTML element where the FirebaseUI sign-in widget will be rendered (Troy's Note - taken from FireBase)-->
-    <h1>Enter E-mail here to Sign-up or Log-in</h1>
-    <div id="firebaseui-auth-container"></div>
+    <h1 id="title">Magic the Gathering</h1>
+    <div id="firebaseui-auth-container" style="opacity:0.8"></div>
     <div id="loader">Loading...</div>
     <input type="submit" id="backButton" value="Back" onclick="backButton()">
 
